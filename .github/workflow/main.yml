@@ -62,19 +62,19 @@ jobs:
         with:
           context: ./backend/
           push: true
-          tags: off1ght/taski_backend:latest
+          tags: off1ght/kittygram_backend:latest
       - name: Build and Push Frontend image
         uses: docker/build-push-action@v2
         with:
           context: ./frontend/
           push: true
-          tags: off1ght/taski_frontend:latest
+          tags: off1ght/kittygram_frontend:latest
       - name: Build and Push Gateway image
         uses: docker/build-push-action@v2
         with:
           context: ./gateway/
           push: true
-          tags: off1ght/taski_gateway:latest
+          tags: off1ght/kittygram_gateway:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -90,7 +90,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           source: "docker-compose.production.yml"
-          target: "taski"
+          target: "kittygram"
       - name: Deploy using Docker Compose
         uses: appleboy/ssh-action@v1
         with:
@@ -99,7 +99,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.SSH_PASSPHRASE }}
           script: |
-            cd taski
+            cd kittygram
             sudo docker-compose -f docker-compose.production.yml pull
             sudo docker-compose -f docker-compose.production.yml down
             sudo docker-compose -f docker-compose.production.yml up -d
