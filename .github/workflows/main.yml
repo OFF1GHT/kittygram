@@ -148,7 +148,7 @@ jobs:
       - name: Push to DockerHub
         uses: docker/build-push-action@v4
         with:
-          context: ./gateway/
+          context: ./nqinx/
           push: true
           # Тут вместо username должен быть ваш логин на Docker Hub
           tags: off1ght/kittygram_gateway:latest
@@ -195,3 +195,5 @@ jobs:
           sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
           sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
           sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
+
+gateway
