@@ -17,7 +17,7 @@ services:
     image: off1ght/kittygram_backend
     env_file: .env
     volumes:
-      - static:/static/
+      - static:/backend_static/
       - media:/app/media/
 
   frontend:
@@ -30,8 +30,8 @@ services:
   gateway:
     image: off1ght/kittygram_gateway
     env_file: .env
-    ports:
-      - 9000:80
     volumes:
       - static:/static
       - media:/app/media/
+    ports:
+      - 9000:80
