@@ -10,7 +10,7 @@ SECRET_KEY = (
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['infrasprint1.hopto.org']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
