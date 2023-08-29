@@ -55,18 +55,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 
-POSTGRES_DB='kittygram'
-POSTGRES_USER='kittygram_user'
-POSTGRES_PASSWORD='kittygram_password'
-DB_NAME='kittygram'
-DB_HOST='db'
-DB_PORT=5432
-ALLOWED_HOSTS=['158.160.76.74' '127.0.0.1' 'localhost' 'infrasprint1.hopto.org']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB', 'django'),
+        'NAME': os.getenv('kittygram', 'django'),
         'USER': os.getenv('POSTGRES_USER', 'django'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
         'HOST': os.getenv('DB_HOST', ''),
@@ -106,6 +99,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'collected_static'
+
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
