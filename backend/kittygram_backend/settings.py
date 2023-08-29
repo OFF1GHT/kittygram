@@ -62,8 +62,6 @@ DATABASES = {
         'NAME': 'kittygram',
         'USER': 'kittygram_user',
         'PASSWORD': 'kittygram_password',
-        'HOST': 'db',
-        'PORT': 5432
     }
 }
 
