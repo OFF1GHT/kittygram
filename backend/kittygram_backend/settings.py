@@ -60,10 +60,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('kittygram', 'django'),
-        'USER': os.getenv('POSTGRES_USER', 'django'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', ''),
-        'HOST': os.getenv('DB_HOST', ''),
-        'PORT': os.getenv('DB_PORT', 5432),
+        'USER': os.getenv('kittygram_user', 'django'),
+        'PASSWORD': os.getenv('kittygram_password', ''),
+        'HOST': os.getenv('db', ''),
+        'PORT': os.getenv('5432', 5432),
     }
 }
 
