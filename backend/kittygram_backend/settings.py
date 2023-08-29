@@ -55,11 +55,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'kittygram_backend.wsgi.application'
 
-POSTGRES_DB=kittygram
-POSTGRES_USER=kittygram_user
-POSTGRES_PASSWORD=kittygram_password
-DB_NAME=kittygram
-DB_HOST=db
+POSTGRES_DB='kittygram'
+POSTGRES_USER='kittygram_user'
+POSTGRES_PASSWORD='kittygram_password'
+DB_NAME='kittygram'
+DB_HOST='db'
 DB_PORT=5432
 ALLOWED_HOSTS=['158.160.76.74' '127.0.0.1' 'localhost' 'infrasprint1.hopto.org']
 
