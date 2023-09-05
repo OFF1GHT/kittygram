@@ -14,24 +14,8 @@ git@github.com:OFF1GHT/kittygram_final.git
 
 2. Переименуйте файл '.env.example' на 'env' и подставте свои данные.
 
-3. Создайте образы:
-```
-cd frontend
-docker build -t username/kittygram_frontend .
-cd ../backend
-docker build -t username/kittygram_backend .
-cd ../nginx
-docker build -t username/kittygram_gateway . 
-```
 
-4. Загрузите образы на свой DockerHub
-```
-docker push username/kittygram_frontend
-docker push username/kittygram_backend
-docker push username/kittygram_gateway
-```
-
-5. Добавьте секреты в GitHub Action:
+3. Добавьте секреты в GitHub Action:
 - DOCKER_USERNAME - ваш логин на DockerHub
 - DOCKER_PASSWORD - ваш пароль на DockerHub
 - SSH_PASSPHRASE - пароль от удаленного сервера
@@ -42,7 +26,13 @@ docker push username/kittygram_gateway
 - TELEGRAM_TOKEN - токен Telegram-бота
 
 ## На удаленном сервере
-1. Подключитесь к удаленному серверу и выполните эти команды:
+
+4. Запустите проект:
+```
+sudo docker compose -f docker-compose.production.yml up -d
+```
+
+5. Подключитесь к удаленному серверу и выполните эти команды:
 ```
 sudo apt update
 sudo apt install curl
@@ -51,26 +41,26 @@ sudo sh ./get-docker.sh
 sudo apt-get install docker-compose-plugin
 ```
 
-2. В директорию 'kityygram' добавте файл docker-compose.production.yml.
+6. В директорию 'kityygram' добавте файл docker-compose.production.yml.
 
-3. Запустите Docker Compose в режиме демона:
+7. Запустите Docker Compose в режиме демона:
 ```
 sudo docker compose -f docker-compose.production.yml up -d
 ```
 
-4. Выполните миграции, соберите статику, скопируйте ее в /backend_static/static/:
+8. Выполните миграции, соберите статику, скопируйте ее в /backend_static/static/:
 ```
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
 sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
 ```
 
-5. Обновите настройки Nginx. Откройте файл конфигурации: 
+9. Обновите настройки Nginx. Откройте файл конфигурации: 
 ```
 sudo nano /etc/nginx/sites-enabled/default
 ```
 
-6. Добавьте новые настройки:
+10. Добавьте новые настройки:
 ```
 location / {
     proxy_set_header Host $http_host;
@@ -78,12 +68,12 @@ location / {
 }
 ```
 
-7. Проверьте работоспособность:
+11. Проверьте работоспособность:
 ```
 sudo nginx -t
 ```
 
-8. Перезагрузите конфигурацию Nginx:
+12. Перезагрузите конфигурацию Nginx:
 ```
 sudo systemctl reload nginx
 ```
@@ -95,11 +85,9 @@ sudo systemctl reload nginx
 git@github.com:OFF1GHT/kittygram_final.git
 ```
 
-2. Соберите контейнеры:
+2. Запустите контейнеры:
 ```
-docker build -t kittygram_backend .
-docker build -t kittygram_frontend .
-docker build -t kittygram_gateway .
+docker-compose up -d
 ```
 
 3. Остановка контейнера и повторный запуск:
