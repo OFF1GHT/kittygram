@@ -85,18 +85,30 @@ sudo systemctl reload nginx
 git@github.com:OFF1GHT/kittygram_final.git
 ```
 
-2. Запустите контейнеры:
+2. Запустите миграции:
+```
+docker-compose run web python manage.py migrate
+```
+
+3. Соберите статику:
+```
+docker-compose run web python manage.py collectstatic
+```
+
+4. Переименуйте файл '.env.example' на 'env' и подставте свои данные.
+
+5. Запустите контейнеры:
 ```
 docker-compose up -d
 ```
 
-3. Остановка контейнера и повторный запуск:
+6. Остановка контейнера и повторный запуск:
 ```
 docker container stop имя_контейнера
 docker container start имя_контейнера
 ```
 
-4. Проект доступен по адресу 'http://localhost:9000'
+7. Проект доступен по адресу 'http://localhost:9000'
 
 ## Ссылка на проект
 ```
