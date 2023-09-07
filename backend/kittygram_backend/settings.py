@@ -1,13 +1,12 @@
 # flake8: noqa
 import os
 from pathlib import Path
-from distutils.util import strtobool
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('SECRET_KEY', 'kittygram_secret')
 
-DEBUG = strtobool(os.getenv('DEBUG'))
+DEBUG = bool(os.getenv('DEBUG', ''))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
